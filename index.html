@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christopher Nehme | Graphic Designer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #000;
+            --secondary: #0a0a0a;
+            --accent: #c7a17a;
+            --text: #f5f5f5;
+            --light-text: #a0a0a0;
+            --spacing: 80px;
+            --transition: all 0.4s ease;
+            --card-bg: #121212;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            background-color: var(--primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 30px 0;
+            z-index: 100;
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+            z-index: 10;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            z-index: 10;
+        }
+        
+        nav li {
+            margin-left: 40px;
+        }
+        
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text);
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        /* Intro Section */
+        .intro-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+        
+        #intro-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .intro-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 20px;
+        }
+        
+        .intro-content h1 {
+            font-size: 70px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .intro-content p {
+            font-size: 24px;
+            color: var(--text);
+            margin-bottom: 40px;
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--accent);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            z-index: 10;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-20px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+        
+        /* Hero Section with Canvas */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            padding-top: 80px;
+        }
+        
+        .hero h1 {
+            font-size: 58px;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            color: var(--light-text);
+        }
+        
+        /* Portfolio Section */
+        section {
+            padding: var(--spacing) 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 400px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            background: var(--card-bg);
+            border: 1px solid #222;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(199, 161, 122, 0.2);
+            border-color: rgba(199, 161, 122, 0.3);
+        }
+        
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: var(--transition);
+        }
+        
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            color: white;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .portfolio-overlay h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .portfolio-overlay p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .project-category {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Experience Section */
+        .experience {
+            background-color: var(--secondary);
+            padding: 80px 0;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--accent);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--accent);
+            border: 4px solid var(--card-bg);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .right::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: var(--card-bg);
+            position: relative;
+            border-radius: 10px;
+            border: 1px solid #222;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .timeline-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+        
+        .timeline-content h4 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--light-text);
+        }
+        
+        .timeline-content .date {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: rgba(199, 161, 122, 0.1);
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .timeline-content ul {
+            padding-left: 20px;
+        }
+        
+        .timeline-content li {
+            margin-bottom: 8px;
+            color: var(--light-text);
+            font-size: 15px;
+        }
+        
+        /* Experience With Section */
+        .experience-with {
+            background-color: var(--secondary);
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .experience-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .experience-tag {
+            background-color: rgba(199, 161, 122, 0.1);
+            color: var(--accent);
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .experience-tag:hover {
+            background-color: var(--accent);
+            color: #000;
+            transform: translateY(-3px);
+        }
+        
+        /* Logo Grid Section */
+        .logo-grid-section {
+            padding: 80px 0;
+            background-color: var(--primary);
+        }
+        
+        .logo-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo-container {
+            width: 120px;
+            height: 120px;
+            perspective: 1000px;
+        }
+        
+        .logo-card {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+        }
+        
+        .logo-container:hover .logo-card {
+            transform: rotateY(180deg);
+        }
+        
+        .logo-front, .logo-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo-front {
+            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+            border: 1px solid #222;
+        }
+        
+        .logo-back {
+            background: linear-gradient(145deg, #c7a17a, #b08a60);
+            transform: rotateY(180deg);
+            color: #000;
+            font-weight: 600;
+            text-align: center;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .logo-back span {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .logo-icon {
+            font-size: 50px;
+            color: var(--accent);
+        }
+        
+        .logo-img {
+            max-width: 70%;
+            max-height: 70%;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: var(--secondary);
+            padding: 80px 0;
+        }
+        
+        .contact-content {
+            display: flex;
+            gap: 60px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-info h3 {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(199, 161, 122, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 20px;
+            color: var(--accent);
+        }
+        
+        .contact-form {
+            flex: 1;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 15px;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: var(--card-bg);
+            border: 1px solid #222;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            transition: var(--transition);
+            color: var(--text);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(199, 161, 122, 0.2);
+        }
+        
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        /* Enhanced Send Button */
+        .send-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--accent);
+            color: #000;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 16px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .send-btn span {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .send-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #b08a60, #d4b28a);
+            z-index: 1;
+            transition: transform 0.5s ease;
+            transform: scaleX(0);
+            transform-origin: right;
+        }
+        
+        .send-btn:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .send-btn:hover {
+            color: #000;
+            box-shadow: 0 10px 20px rgba(199, 161, 122, 0.4);
+            transform: translateY(-3px);
+        }
+        
+        .send-btn i {
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .send-btn:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: #ccc;
+            padding: 50px 0 20px;
+            border-top: 1px solid #222;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            color: #000;
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 14px;
+        }
+        
+        /* Animations */
+        .animated-element {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .animated-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .university-highlight {
+            background: linear-gradient(120deg, rgba(199, 161, 122, 0.3) 0%, rgba(199, 161, 122, 0) 100%);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--accent);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .right {
+                left: 0;
+            }
+            
+            .contact-content {
+                flex-direction: column;
+            }
+            
+            .intro-content h1 {
+                font-size: 50px;
+            }
+            
+            .intro-content p {
+                font-size: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                text-align: center;
+            }
+            
+            .hero-content {
+                margin: 0 auto;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                display: block;
+                margin-bottom: 15px;
+                width: 100%;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+            
+            .logo-container {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .intro-content h1 {
+                font-size: 36px;
+            }
+            
+            .intro-content p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Intro Canvas Section -->
+    <section class="intro-section" id="intro">
+        <canvas id="intro-canvas" data-engine="three.js r128"></canvas>
+        <div class="intro-content">
+            <h1>Christopher Nehme</h1>
+            <p>Creative Graphic Designer & Visual Storyteller</p>
+            <a href="#home" class="btn">Enter Portfolio</a>
+        </div>
+        <div class="scroll-down">Scroll Down</div>
+    </section>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">Christopher<span>.</span></a>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#expertise">Expertise</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with Canvas -->
+    <section id="home" class="hero">
+        <canvas id="hero-canvas"></canvas>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Visual Design <br><span style="color: var(--accent);">That Tells Stories</span></h1>
+                <p>I create meaningful visual experiences that connect brands with their audiences through thoughtful design and creative strategy.</p>
+                <div class="hero-btns">
+                    <a href="#portfolio" class="btn">View My Work</a>
+                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Projects</h2>
+            </div>
+            <div class="portfolio-grid">
+                <!-- Project 1 -->
+                <div class="portfolio-item animated-element">
+                    <div class="project-category">Brand Identity</div>
+                    <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1491897554428-130a60dd4757?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80');"></div>
+                    <div class="portfolio-overlay">
+                        <h3>Luxury Fashion Brand</h3>
+                        <p>Complete brand identity including logo, color scheme, and visual guidelines</p>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="portfolio-item animated-element">
+                    <div class="project-category">Packaging</div>
+                    <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1588200908342-23b585c03e26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="portfolio-overlay">
+                        <h3>Organic Skincare Line</h3>
+                        <p>Eco-friendly packaging design with custom illustrations</p>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="portfolio-item animated-element">
+                    <div class="project-category">Editorial</div>
+                    <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="portfolio-overlay">
+                        <h3>Art & Culture Magazine</h3>
+                        <p>Editorial design for quarterly publication</p>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="portfolio-item animated-element">
+                    <div class="project-category">Web Design</div>
+                    <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="portfolio-overlay">
+                        <h3>E-commerce Platform</h3>
+                        <p>UI/UX design for fashion retailer</p>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="portfolio-item animated-element">
+                    <div class="project-category">Motion Graphics</div>
+                    <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1579566346927-c68383817a25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="portfolio-overlay">
+                        <h3>Product Launch Animation</h3>
+                        <p>Promotional video for tech startup</p>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="portfolio-item animated-element">
+                    <div class="project-category">Typography</div>
+                    <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');"></div>
+                    <div class="portfolio-overlay">
+                        <h3>Experimental Type Project</h3>
+                        <p>Custom typography for art exhibition</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience With Section -->
+    <section id="expertise" class="experience-with">
+        <div class="container">
+            <div class="section-title">
+                <h2>Experience With</h2>
+            </div>
+            <div class="experience-tags">
+                <div class="experience-tag">Adobe Photoshop</div>
+                <div class="experience-tag">Adobe After Effects</div>
+                <div class="experience-tag">Adobe Illustrator</div>
+                <div class="experience-tag">Adobe InDesign</div>
+                <div class="experience-tag">Adobe XD</div>
+                <div class="experience-tag">Figma</div>
+                <div class="experience-tag">Premiere Pro</div>
+                <div class="experience-tag">Typography</div>
+                <div class="experience-tag">Brand Identity</div>
+                <div class="experience-tag">Motion Graphics</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logo Grid Section -->
+    <section class="logo-grid-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Design Tools Mastery</h2>
+            </div>
+            <div class="logo-grid">
+                <!-- Photoshop -->
+                <div class="logo-container">
+                    <div class="logo-card">
+                        <div class="logo-front">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg" alt="Photoshop" class="logo-img">
+                        </div>
+                        <div class="logo-back">
+                            Adobe
+                            <span>Photoshop</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Illustrator -->
+                <div class="logo-container">
+                    <div class="logo-card">
+                        <div class="logo-front">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg" alt="Illustrator" class="logo-img">
+                        </div>
+                        <div class="logo-back">
+                            Adobe
+                            <span>Illustrator</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- After Effects -->
+                <div class="logo-container">
+                    <div class="logo-card">
+                        <div class="logo-front">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg" alt="After Effects" class="logo-img">
+                        </div>
+                        <div class="logo-back">
+                            Adobe
+                            <span>After Effects</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Adobe InDesign -->
+                <div class="logo-container">
+                    <div class="logo-card">
+                        <div class="logo-front">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Adobe_InDesign_CC_icon.svg" alt="InDesign" class="logo-img">
+                        </div>
+                        <div class="logo-back">
+                            Adobe
+                            <span>InDesign</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Adobe XD -->
+                <div class="logo-container">
+                    <div class="logo-card">
+                        <div class="logo-front">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Adobe_XD_CC_icon.svg" alt="Adobe XD" class="logo-img">
+                        </div>
+                        <div class="logo-back">
+                            Adobe
+                            <span>XD</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Figma -->
+                <div class="logo-container">
+                    <div class="logo-card">
+                        <div class="logo-front">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="Figma" class="logo-img">
+                        </div>
+                        <div class="logo-back">
+                            Figma
+                            <span>UI/UX Design</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Premiere Pro -->
+                <div class="logo-container">
+                    <div class="logo-card">
+                        <div class="logo-front">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg" alt="Premiere Pro" class="logo-img">
+                        </div>
+                        <div class="logo-back">
+                            Adobe
+                            <span>Premiere Pro</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Work Experience & Education</h2>
+            </div>
+            <div class="timeline">
+                <!-- Experience Item 1 -->
+                <div class="timeline-item left animated-element">
+                    <div class="timeline-content">
+                        <span class="date">September 2024 - Present</span>
+                        <h3>Amazon Product Listing Manager</h3>
+                        <h4>Remote Position</h4>
+                        <ul>
+                            <li>Optimized listings to boost Amazon sales</li>
+                            <li>Implemented SEO strategies for product rankings</li>
+                            <li>Managed descriptions, images, and pricing</li>
+                            <li>Monitored performance via Amazon Seller Central</li>
+                            <li>Developed Amazon-focused promotions</li>
+                            <li>Ensured compliance with Amazon policies</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Experience Item 2 -->
+                <div class="timeline-item right animated-element">
+                    <div class="timeline-content">
+                        <span class="date">October 2021 - January 2023</span>
+                        <h3>Freelance Graphic Designer</h3>
+                        <h4>Independent Contractor</h4>
+                        <ul>
+                            <li>Designed posters, brochures, and social media content</li>
+                            <li>Created motion graphics for university students</li>
+                            <li>Delivered high-quality work on tight deadlines</li>
+                            <li>Used Adobe Creative Suite extensively (Photoshop, Illustrator, InDesign, After Effects)</li>
+                            <li>Collaborated with clients to meet their vision</li>
+                            <li>Managed multiple projects simultaneously</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Experience Item 3 -->
+                <div class="timeline-item left animated-element">
+                    <div class="timeline-content">
+                        <span class="date">September - December 2023</span>
+                        <h3>Graphic Design Intern</h3>
+                        <h4>American University of Science & Technology</h4>
+                        <ul>
+                            <li>Used Adobe Creative Suite for design projects</li>
+                            <li>Developed skills in design principles, typography, color theory</li>
+                            <li>Created marketing materials (brochures, flyers, social media)</li>
+                            <li>Collaborated with team members on projects</li>
+                            <li>Improved time management and organizational skills</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Education -->
+                <div class="timeline-item right animated-element">
+                    <div class="timeline-content">
+                        <span class="date">2021 - 2024</span>
+                        <h3>Bachelor in Graphic Design</h3>
+                        <h4>Graduated in 2024</h4>
+                        <p>American University of Science & Technology</p>
+                    </div>
+                </div>
+                
+                <!-- Previous Education -->
+                <div class="timeline-item left animated-element">
+                    <div class="timeline-content">
+                        <span class="date">2017 - 2021</span>
+                        <h3>Interior Design Studies</h3>
+                        <p>Developed foundational design principles and spatial awareness</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's create something amazing together</h3>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>christophernehme30@outlook.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+961-71015052</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Montazah, Beit Merri, Mount Lebanon</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h4>Education</h4>
+                            <p>Bachelor in Graphic Design at <span class="university-highlight">American University of Science & Technology</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="send-btn">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <a href="#" class="footer-logo">Christopher<span>.</span></a>
+                    <p>Creating meaningful design experiences that connect brands with their audience.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-behance"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#expertise">Expertise</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Christopher Nehme. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Three.js for Intro Canvas
+        function initIntroCanvas() {
+            const canvas = document.getElementById('intro-canvas');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            
+            // Particles
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particlesCount = 5000;
+            
+            const posArray = new Float32Array(particlesCount * 3);
+            const colorArray = new Float32Array(particlesCount * 3);
+            
+            for(let i = 0; i < particlesCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 10;
+                colorArray[i] = Math.random();
+            }
+            
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+            particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
+            
+            // Material
+            const particlesMaterial = new THREE.PointsMaterial({
+                size: 0.02,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8
+            });
+            
+            // Mesh
+            const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particlesMesh);
+            
+            camera.position.z = 3;
+            
+            // Mouse movement
+            let mouseX = 0;
+            let mouseY = 0;
+            
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+            });
+            
+            // Animation
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                particlesMesh.rotation.x += 0.001;
+                particlesMesh.rotation.y += 0.001;
+                
+                // Move camera based on mouse position
+                camera.position.x += (mouseX * 2 - camera.position.x) * 0.05;
+                camera.position.y += (mouseY * 2 - camera.position.y) * 0.05;
+                camera.lookAt(scene.position);
+                
+                renderer.render(scene, camera);
+            }
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+            
+            animate();
+        }
+        
+        // Three.js for Hero Canvas
+        function initHeroCanvas() {
+            const canvas = document.getElementById('hero-canvas');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            
+            // Add some floating shapes
+            const geometry = new THREE.IcosahedronGeometry(0.5, 0);
+            const material = new THREE.MeshBasicMaterial({ 
+                color: 0xc7a17a,
+                wireframe: true
+            });
+            
+            const shapes = [];
+            const shapeCount = 15;
+            
+            for(let i = 0; i < shapeCount; i++) {
+                const shape = new THREE.Mesh(geometry, material.clone());
+                shape.position.x = (Math.random() - 0.5) * 10;
+                shape.position.y = (Math.random() - 0.5) * 10;
+                shape.position.z = (Math.random() - 0.5) * 10;
+                shape.scale.setScalar(Math.random() * 0.5 + 0.5);
+                scene.add(shape);
+                shapes.push({
+                    mesh: shape,
+                    speed: new THREE.Vector3(
+                        (Math.random() - 0.5) * 0.01,
+                        (Math.random() - 0.5) * 0.01,
+                        (Math.random() - 0.5) * 0.01
+                    )
+                });
+            }
+            
+            camera.position.z = 5;
+            
+            // Animation
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                shapes.forEach(obj => {
+                    obj.mesh.rotation.x += obj.speed.x;
+                    obj.mesh.rotation.y += obj.speed.y;
+                    obj.mesh.rotation.z += obj.speed.z;
+                });
+                
+                renderer.render(scene, camera);
+            }
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+            
+            animate();
+        }
+        
+        // Initialize the canvases when the page loads
+        window.addEventListener('load', () => {
+            initIntroCanvas();
+            initHeroCanvas();
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if(this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav ul');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.animated-element').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Initialize all timeline items as animated elements
+        document.querySelectorAll('.timeline-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
