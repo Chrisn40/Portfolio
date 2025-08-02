@@ -7,8 +7,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Add EmailJS SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <style>
         :root {
             --primary: #000;
@@ -766,28 +764,6 @@
             color: var(--accent);
         }
         
-        /* Message Styles */
-        #form-message {
-            display: none;
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 5px;
-            text-align: center;
-            transition: var(--transition);
-        }
-        
-        .message-success {
-            background: rgba(76, 175, 80, 0.1);
-            color: #4CAF50;
-            border: 1px solid rgba(76, 175, 80, 0.3);
-        }
-        
-        .message-error {
-            background: rgba(244, 67, 54, 0.1);
-            color: #F44336;
-            border: 1px solid rgba(244, 67, 54, 0.3);
-        }
-        
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero h1 {
@@ -1238,29 +1214,28 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form id="contact-form">
+                    <form>
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" required>
                         </div>
                         <div class="form-group">
                             <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject">
+                            <input type="text" id="subject">
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" name="message" required></textarea>
+                            <textarea id="message" required></textarea>
                         </div>
                         <button type="submit" class="send-btn">
                             <span>Send Message</span>
                             <i class="fas fa-paper-plane"></i>
                         </button>
                     </form>
-                    <div id="form-message"></div>
                 </div>
             </div>
         </div>
@@ -1298,11 +1273,6 @@
     </footer>
 
     <script>
-        // Initialize EmailJS with your user ID
-        (function() {
-            emailjs.init("wvz4FZ9fL9q0VlF7b");  // My EmailJS user ID
-        })();
-
         // Three.js for Intro Canvas
         function initIntroCanvas() {
             const canvas = document.getElementById('intro-canvas');
@@ -1487,64 +1457,6 @@
         document.querySelectorAll('.timeline-item').forEach(el => {
             observer.observe(el);
         });
-        
-        // Contact form submission
-        const contactForm = document.getElementById('contact-form');
-        const formMessage = document.getElementById('form-message');
-        
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Get form values
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const subject = document.getElementById('subject').value;
-                const message = document.getElementById('message').value;
-                
-                // Show loading state
-                const submitBtn = contactForm.querySelector('.send-btn');
-                const originalBtnText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                submitBtn.disabled = true;
-                
-                // Hide any previous messages
-                formMessage.style.display = 'none';
-                
-                // Send email
-                emailjs.send("service_j4l8p5p", "template_6t4j6jq", {
-                    from_name: name,
-                    from_email: email,
-                    subject: subject,
-                    message: message,
-                    to_email: "chrisn40@proton.me"  // Your email address
-                })
-                .then(function(response) {
-                    // Show success message
-                    formMessage.textContent = 'Your message has been sent successfully!';
-                    formMessage.className = 'message-success';
-                    formMessage.style.display = 'block';
-                    
-                    // Reset form
-                    contactForm.reset();
-                    
-                    // Hide message after 5 seconds
-                    setTimeout(function() {
-                        formMessage.style.display = 'none';
-                    }, 5000);
-                }, function(error) {
-                    // Show error message
-                    formMessage.textContent = 'Failed to send message. Please try again later.';
-                    formMessage.className = 'message-error';
-                    formMessage.style.display = 'block';
-                })
-                .finally(() => {
-                    // Reset button
-                    submitBtn.innerHTML = originalBtnText;
-                    submitBtn.disabled = false;
-                });
-            });
-        }
     </script>
 </body>
 </html>
