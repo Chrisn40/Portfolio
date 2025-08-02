@@ -763,6 +763,120 @@
             border-radius: 4px;
             color: var(--accent);
         }
+
+        /* NEW: Text animation styles */
+        .text-animate-container {
+            display: block;
+            text-align: start;
+            position: relative;
+            perspective: 400px;
+            overflow: hidden;
+        }
+
+        .text-animate-line {
+            display: block;
+            position: relative;
+            transform: translate3d(0, 100%, 0);
+            opacity: 0;
+            transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), 
+                        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .text-animate-line.visible {
+            transform: translate3d(0, 0, 0);
+            opacity: 1;
+        }
+
+        .ball-icon {
+            display: inline-block;
+            vertical-align: middle;
+            width: 40px;
+            height: 40px;
+            margin: 0 8px;
+        }
+
+        /* NEW: About section styles */
+        .about-section {
+            padding: 80px 0;
+            background-color: var(--primary);
+        }
+
+        .custom-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .h1-about__heading-text {
+            margin-bottom: 60px;
+        }
+
+        .rr_title_anim {
+            font-size: 70px;
+            font-weight: 500;
+            line-height: 1.2;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .custom-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+
+        .h1-about__item {
+            padding: 30px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            height: 100%;
+            border: 1px solid #222;
+            transition: var(--transition);
+        }
+
+        .h1-about__item:hover {
+            transform: translateY(-10px);
+            border-color: rgba(199, 161, 122, 0.3);
+        }
+
+        .h1-about__item-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .h1-about__item-thumb {
+            margin-bottom: 20px;
+        }
+
+        .h1-about__item-thumb img {
+            max-width: 80px;
+        }
+
+        .h1-about__item-text h6 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .h1-about__item-text h6 a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .dec {
+            color: var(--light-text);
+        }
+
+        .fade-top {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .fade-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
         
         /* Responsive Design */
         @media (max-width: 992px) {
@@ -798,6 +912,10 @@
             
             .intro-content p {
                 font-size: 20px;
+            }
+            
+            .rr_title_anim {
+                font-size: 50px;
             }
         }
         
@@ -844,6 +962,18 @@
             .intro-content p {
                 font-size: 18px;
             }
+            
+            .rr_title_anim {
+                font-size: 36px;
+            }
+            
+            .custom-row {
+                flex-direction: column;
+            }
+            
+            .h1-about__item {
+                margin-bottom: 20px;
+            }
         }
     </style>
 </head>
@@ -853,7 +983,7 @@
         <canvas id="intro-canvas" data-engine="three.js r128"></canvas>
         <div class="intro-content">
             <h1>Christopher Nehme</h1>
-            <p>Creative Graphic Designer & Visual Storyteller</p>
+            <p>Creative Graphic Designer</p>
             <a href="#home" class="btn">Enter Portfolio</a>
         </div>
         <div class="scroll-down">Scroll Down</div>
@@ -870,6 +1000,7 @@
                         <li><a href="#portfolio">Portfolio</a></li>
                         <li><a href="#experience">Experience</a></li>
                         <li><a href="#expertise">Expertise</a></li>
+                        <li><a href="#about">About</a></li> <!-- NEW: Added About link -->
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </nav>
@@ -885,11 +1016,75 @@
         <canvas id="hero-canvas"></canvas>
         <div class="container">
             <div class="hero-content">
-                <h1>Visual Design <br><span style="color: var(--accent);">That Tells Stories</span></h1>
+                <!-- UPDATED: Text animation effect -->
+                <h1 class="text-animate-container">
+                    <div class="text-animate-line">Visual Design</div>
+                    <div class="text-animate-line">That <span style="color: var(--accent);">Tells Stories</span></div>
+                </h1>
                 <p>I create meaningful visual experiences that connect brands with their audiences through thoughtful design and creative strategy.</p>
                 <div class="hero-btns">
                     <a href="#portfolio" class="btn">View My Work</a>
                     <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: About Section -->
+    <section id="about" class="about-section">
+        <div class="custom-container">
+            <div class="row justify-content-xl-center justify-content-start custom-row">
+                <div class="col-xl-3 col-lg-6 col-sm-6 col-xs-6 p-0">
+                    <div class="h1-about__item fade-top mb-30">
+                        <div class="h1-about__item-content">
+                            <div class="h1-about__item-thumb">
+                                <i class="fas fa-medal" style="font-size: 50px; color: var(--accent);"></i>
+                            </div>
+                            <div class="h1-about__item-text">
+                                <h6><a href="#portfolio">Quality Excellence</a></h6>
+                                <p class="dec">Every project is crafted with meticulous attention to detail and a commitment to delivering exceptional results that exceed expectations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-sm-6 col-xs-6 p-0">
+                    <div class="h1-about__item fade-top mb-30">
+                        <div class="h1-about__item-content">
+                            <div class="h1-about__item-thumb">
+                                <i class="fas fa-palette" style="font-size: 50px; color: var(--accent);"></i>
+                            </div>
+                            <div class="h1-about__item-text">
+                                <h6><a href="#portfolio">Creativity</a></h6>
+                                <p class="dec">Innovative solutions that blend artistic vision with strategic thinking to create distinctive and memorable brand experiences.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-sm-6 col-xs-6 p-0">
+                    <div class="h1-about__item fade-top mb-30">
+                        <div class="h1-about__item-content">
+                            <div class="h1-about__item-thumb">
+                                <i class="fas fa-bolt" style="font-size: 50px; color: var(--accent);"></i>
+                            </div>
+                            <div class="h1-about__item-text">
+                                <h6><a href="#portfolio">Fast Delivery</a></h6>
+                                <p class="dec">Efficient workflow processes that ensure timely delivery without compromising on the quality or creativity of the final product.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-sm-6 col-xs-6 p-0">
+                    <div class="h1-about__item fade-top mb-30">
+                        <div class="h1-about__item-content">
+                            <div class="h1-about__item-thumb">
+                                <i class="fas fa-comments" style="font-size: 50px; color: var(--accent);"></i>
+                            </div>
+                            <div class="h1-about__item-text">
+                                <h6><a href="#contact">Clear Communication</a></h6>
+                                <p class="dec">Transparent and collaborative process that keeps clients informed at every stage, ensuring the final design perfectly matches their vision.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1175,6 +1370,7 @@
             <div class="contact-content">
                 <div class="contact-info">
                     <h3>Let's create something amazing together</h3>
+                    <!-- REMOVED: Phone number section -->
                     <div class="contact-detail">
                         <div class="contact-icon">
                             <i class="fas fa-envelope"></i>
@@ -1186,15 +1382,6 @@
                     </div>
                     <div class="contact-detail">
                         <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div>
-                            <h4>Phone</h4>
-                            <p>+961-71015052</p>
-                        </div>
-                    </div>
-                    <div class="contact-detail">
-                        <div class="contact-icon">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div>
@@ -1202,7 +1389,6 @@
                             <p>Montazah, Beit Merri, Mount Lebanon</p>
                         </div>
                     </div>
-                    
                     <div class="contact-detail">
                         <div class="contact-icon">
                             <i class="fas fa-graduation-cap"></i>
@@ -1262,6 +1448,7 @@
                         <li><a href="#portfolio">Portfolio</a></li>
                         <li><a href="#experience">Experience</a></li>
                         <li><a href="#expertise">Expertise</a></li>
+                        <li><a href="#about">About</a></li> <!-- NEW: Added About link -->
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -1455,6 +1642,25 @@
         
         // Initialize all timeline items as animated elements
         document.querySelectorAll('.timeline-item').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // NEW: Text animation observer
+        const textLineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, 200 * Array.from(entry.target.parentElement.children).indexOf(entry.target));
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.text-animate-line').forEach(el => {
+            textLineObserver.observe(el);
+        });
+        
+        document.querySelectorAll('.fade-top').forEach(el => {
             observer.observe(el);
         });
     </script>
