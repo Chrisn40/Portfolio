@@ -737,198 +737,6 @@
             max-height: 70%;
         }
         
-        /* Contact Section */
-        .contact {
-            background-color: var(--secondary);
-            padding: 80px 0;
-        }
-        
-        .contact-content {
-            display: flex;
-            gap: 60px;
-        }
-        
-        .contact-info {
-            flex: 1;
-        }
-        
-        .contact-info h3 {
-            font-size: 24px;
-            margin-bottom: 30px;
-        }
-        
-        .contact-detail {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-        
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background-color: rgba(199, 161, 122, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 20px;
-            font-size: 20px;
-            color: var(--accent);
-        }
-        
-        .contact-form {
-            flex: 1;
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            font-size: 15px;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            background: var(--card-bg);
-            border: 1px solid #222;
-            border-radius: 5px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 15px;
-            transition: var(--transition);
-            color: var(--text);
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: var(--accent);
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(199, 161, 122, 0.2);
-        }
-        
-        textarea {
-            height: 150px;
-            resize: vertical;
-        }
-        
-        /* Enhanced Send Button */
-        .send-btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background: var(--accent);
-            color: #000;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 16px;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .send-btn span {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .send-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #b08a60, #d4b28a);
-            z-index: 1;
-            transition: transform 0.5s ease;
-            transform: scaleX(0);
-            transform-origin: right;
-        }
-        
-        .send-btn:hover::before {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-        
-        .send-btn:hover {
-            color: #000;
-            box-shadow: 0 10px 20px rgba(199, 161, 122, 0.4);
-            transform: translateY(-3px);
-        }
-        
-        .send-btn i {
-            margin-left: 10px;
-            transition: transform 0.3s ease;
-        }
-        
-        .send-btn:hover i {
-            transform: translateX(5px);
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--primary);
-            color: #ccc;
-            padding: 50px 0 20px;
-            border-top: 1px solid #222;
-        }
-        
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 40px;
-        }
-        
-        .footer-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 20px;
-            display: block;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.05);
-            color: var(--text);
-            transition: var(--transition);
-            text-decoration: none;
-        }
-        
-        .social-links a:hover {
-            background-color: var(--accent);
-            color: #000;
-            transform: translateY(-5px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 14px;
-        }
-        
         /* Animations */
         .animated-element {
             opacity: 0;
@@ -946,6 +754,110 @@
             padding: 2px 8px;
             border-radius: 4px;
             color: var(--accent);
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: var(--secondary);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .footer-brand {
+            max-width: 400px;
+        }
+        
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .footer-logo span {
+            color: var(--accent);
+        }
+        
+        .footer-tagline {
+            color: var(--light-text);
+            margin-bottom: 25px;
+        }
+        
+        .social-section {
+            text-align: center;
+            margin: 0 auto;
+        }
+        
+        .social-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+        
+        .social-links a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--light-text);
+            transition: var(--transition);
+            width: 80px;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .social-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+            background: rgba(199, 161, 122, 0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover .social-icon {
+            background: var(--accent);
+            color: #000;
+        }
+        
+        .social-label {
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--light-text);
+            font-size: 14px;
         }
         
         /* Responsive Design */
@@ -982,10 +894,6 @@
                 left: 0;
             }
             
-            .contact-content {
-                flex-direction: column;
-            }
-            
             .intro-content h1 {
                 font-size: 50px;
             }
@@ -1000,6 +908,19 @@
             
             .text-animate-line {
                 font-size: 48px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .footer-brand {
+                text-align: center;
+            }
+            
+            .social-section {
+                width: 100%;
             }
         }
         
@@ -1057,11 +978,6 @@
             .text-animate-line {
                 font-size: 36px;
             }
-            
-            .footer-content {
-                flex-direction: column;
-                gap: 40px;
-            }
         }
         
         @media (max-width: 480px) {
@@ -1075,6 +991,15 @@
             
             .section-title h2 {
                 font-size: 28px;
+            }
+            
+            .social-links {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .social-links a {
+                width: 70px;
             }
         }
     </style>
@@ -1103,7 +1028,6 @@
                         <li><a href="#experience">Experience</a></li>
                         <li><a href="#expertise">Expertise</a></li>
                         <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </nav>
                 <button class="mobile-menu-btn">
@@ -1126,7 +1050,6 @@
                 <p>I create meaningful visual experiences that connect brands with their audiences through thoughtful design and creative strategy.</p>
                 <div class="hero-btns">
                     <a href="#portfolio" class="btn">View My Work</a>
-                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
                 </div>
             </div>
         </div>
@@ -1185,7 +1108,7 @@
                             <i class="fas fa-comments"></i>
                         </div>
                         <div class="h1-about__item-text">
-                            <h6><a href="#contact">Clear Communication</a></h6>
+                            <h6><a href="#portfolio">Clear Communication</a></h6>
                             <p class="dec">Transparent and collaborative process that keeps clients informed at every stage, ensuring the final design perfectly matches their vision.</p>
                         </div>
                     </div>
@@ -1396,7 +1319,7 @@
                 <!-- Experience Item 1 -->
                 <div class="timeline-item left animated-element">
                     <div class="timeline-content">
-                        <span class="date">September 2023 - Present</span>
+                        <span class="date">September 2024 - Present</span>
                         <h3>Amazon Product Listing Manager</h3>
                         <h4>Remote Position</h4>
                         <ul>
@@ -1458,73 +1381,8 @@
                     <div class="timeline-content">
                         <span class="date">2017 - 2021</span>
                         <h3>Interior Design Studies</h3>
-                        <p>Developed foundational design principles</p>
+                        <p>Developed foundational design principles and spatial awareness</p>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Get In Touch</h2>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Let's create something amazing together</h3>
-                    <div class="contact-detail">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h4>Email</h4>
-                            <p>christophernehme30@outlook.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-detail">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
-                            <h4>Location</h4>
-                            <p>Montazah, Beit Merri, Mount Lebanon</p>
-                        </div>
-                    </div>
-                    <div class="contact-detail">
-                        <div class="contact-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div>
-                            <h4>Education</h4>
-                            <p>Bachelor in Graphic Design at <span class="university-highlight">American University of Science & Technology</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" required></textarea>
-                        </div>
-                        <button type="submit" class="send-btn">
-                            <span>Send Message</span>
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
                 </div>
             </div>
         </div>
@@ -1534,28 +1392,42 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div>
+                <div class="footer-brand">
                     <a href="#" class="footer-logo">Christopher<span>.</span></a>
-                    <p>Creating meaningful design experiences that connect brands with their audience.</p>
+                    <p class="footer-tagline">Creating meaningful design experiences that connect brands with their audience.</p>
+                </div>
+                
+                <div class="social-section">
+                    <h3 class="social-title">Connect With Me</h3>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-behance"></i></a>
-                        <a href="#"><i class="fab fa-dribbble"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#">
+                            <div class="social-icon">
+                                <i class="fab fa-behance"></i>
+                            </div>
+                            <span class="social-label">Behance</span>
+                        </a>
+                        <a href="#">
+                            <div class="social-icon">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <span class="social-label">Instagram</span>
+                        </a>
+                        <a href="www.linkedin.com/in/christopher-nehme-80640a153">
+                            <div class="social-icon">
+                                <i class="fab fa-linkedin-in"></i>
+                            </div>
+                            <span class="social-label">LinkedIn</span>
+                        </a>
+                        <a href="#">
+                            <div class="social-icon">
+                                <i class="fab fa-dribbble"></i>
+                            </div>
+                            <span class="social-label">Dribbble</span>
+                        </a>
                     </div>
                 </div>
-                <div>
-                    <h4>Navigation</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#portfolio">Portfolio</a></li>
-                        <li><a href="#experience">Experience</a></li>
-                        <li><a href="#expertise">Expertise</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
             </div>
+            
             <div class="copyright">
                 <p>&copy; 2024 Christopher Nehme. All rights reserved.</p>
             </div>
